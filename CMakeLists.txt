@@ -10,7 +10,7 @@ ELSE()
   SET(IS_ARM FALSE)
 ENDIF()
 
-SET(BUILD_TEST TRUE)
+SET(BUILD_TEST FALSE)
 
 #######################################
 SET(PROJECT_NAME fast)
