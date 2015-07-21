@@ -10,8 +10,6 @@ ELSE()
   SET(IS_ARM FALSE)
 ENDIF()
 
-SET(BUILD_TEST TRUE)
-
 #######################################
 SET(PROJECT_NAME fast)
 PROJECT(${PROJECT_NAME})
@@ -20,7 +18,7 @@ SET(CMAKE_VERBOSE_MAKEFILE ON)
 
 # Build type and flags
 SET(CMAKE_BUILD_TYPE Release) # Options:  Debug, RelWithDebInfo, Release
-SET(CMAKE_CXX_FLAGS "-Wall -Werror -Wno-unused-variable -Wno-unused-but-set-variable -Wno-unknown-pragmas")
+SET(CMAKE_CXX_FLAGS "-Wall -Werror -Wno-unused-variable -Wno-unused-but-set-variable -Wno-unknown-pragmas -fPIC")
 SET(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS} -O0 -g")
 IF(IS_ARM)
   SET(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS} -O3 -mfpu=neon -march=armv7-a")
@@ -40,7 +38,7 @@ ENDIF()
 
 # Add library
 INCLUDE_DIRECTORIES(include src)
-ADD_LIBRARY(${PROJECT_NAME} SHARED ${SOURCES})
+ADD_LIBRARY(${PROJECT_NAME} STATIC ${SOURCES})
 
 # Add Tests
 IF(BUILD_TEST)
